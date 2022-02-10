@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <title>Aplikasi Prediksi Lokasi Pertanian</title>
+    </head>
+    <body
+        class="
+            flex flex-col
+            justify-between
+            item-center
+            p-8
+            min-h-screen
+            bg-gradient-to-r
+            from-green-400
+            to-blue-500
+            text-gray-800
+            md:flex-row
+        "
+    >
+        <main class="bg-white p-16 rounded-lg">
+            <h1 class="text-3xl font-bold mb-8">
+              Prediksi Tanaman yang Cocok:
+            </h1>
+
+            <form
+                action="{{ url_for('predict') }}"
+                method="post"
+                class="flex flex-col"
+            >
+
+                <label for="inputNanme4" class="form-label">Suhu dalam derajat Celcius</label>
+                <input 
+                    type="number"
+                    step="any" 
+                    class="p-4 bg-gray-100 rounded-md" 
+                    id="suhu" 
+                    name="suhu"
+                    placeholder="suhu"
+                    required="required"
+                >
+
+                <label for="inputNanme4" class="form-label">Kelembaban relatif dalam %</label>
+                <input 
+                    type="number" 
+                    step="any"
+                    class="p-4 bg-gray-100 rounded-md" 
+                    id="kelembaban" 
+                    name="kelembaban"
+                    placeholder="kelembaban"
+                    required="required"
+                >
+
+                <label for="inputNanme4" class="form-label">Nilai ph tanah</label>
+                <input 
+                    type="number" 
+                    step="any"
+                    class="p-4 bg-gray-100 rounded-md" 
+                    id="phtanah" 
+                    name="phtanah"
+                    placeholder="phtanah"
+                    required="required"
+                >
+
+                <label for="inputNanme4" class="form-label">Curah hujan dalam mm</label>
+                <input 
+                    type="number"
+                    step="any" 
+                    class="p-4 bg-gray-100 rounded-md"
+                    id="curahhujan" 
+                    name="curahhujan"
+                    placeholder="curahhujan"
+                    required="required"
+                >
+
+
+                <button
+                    type="submit"
+                    class="
+                        flex
+                        justify-center
+                        align-center
+                        mt-8
+                        p-4
+                        bg-gradient-to-r
+                        from-green-400
+                        to-blue-500
+                        text-white
+                        rounded-md
+                    "
+                >
+                    PREDIKSI SEKARANG
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-arrow-right ml-4"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+        </main>
+        <section class="mt-8 h-full flex-auto rounded-lg md:mt-0 md:ml-8">
+            <div class="bg-white p-16 rounded-lg">
+                <h1 class="text-2xl mb-8">
+                    Estimasi prediksi tanaman yang cocok adalah
+                </h1>
+                <h2 class="text-5xl font-bold">Tanaman {{ hasil_prediksi_tanaman }}</h2>
+                <div class="mt-8">
+                    <p>Suhu dalam derajat Celcius: {{ suhu }}</p>
+                    <p>Kelembaban relatif: {{ kelembaban }} %</p>
+                    <p>Nilai ph tanah: {{ phtanah }}</p>
+                    <p>Curah hujan: {{ curahhujan }} mm</p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
